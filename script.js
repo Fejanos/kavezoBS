@@ -23,6 +23,29 @@ fetch('https://api.sampleapis.com/coffee/hot')
             // hányadik elemre mutasson
             indicator.dataset.bsSlideTo = index;
             indicator.arialLabel = 'Slide ' + (index + 1);
+
+            // az első elem esetén akítvnak jelöljük
+            if(index === 0){
+                indicator.className = 'active';
+                indicator.ariaCurrent = 'true';
+            }
+
+            // hozzáadjuk az indikátort a dokumentumhoz
+            indicators.appendChild(indicator);
+
+            // új div - ami egy carousel elem (slide) lesz
+            const carouselItem = document.createElement('div');
+            carouselItem.className = 'carousel-item';
+
+            // első elem aktiválása induláskor
+            if(index === 0){
+                carouselItem.classList.add('active');
+            }
+
+            // <img> elem
+            const img = document.createElement('img');
+            img.src = item.image; // kép URL az API válaszból
+            img.alt = item.title; // alternatív szöveg a képhez
         })
     })
     .catch(error => {
